@@ -3,6 +3,10 @@
 #include <QTimer>
 #include <QDebug>
 #include <QLabel>
+#include <QDialog>
+#include <QMessageBox>
+#include <QFileDialog>
+#include <QFileInfo>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -18,10 +22,12 @@ MainWindow::MainWindow(QWidget *parent) :
     lable->setFrameStyle(QFrame::Box | QFrame::Sunken);
     ui->statusBar->addPermanentWidget(lable);
 
-    //设置按钮和下拉框的初始状态：“打开串口”可用，“关闭串口”和“发送数据”按钮不可用。下拉框可用,以实现串口参数的设置。
+    //设置按钮和下拉框的初始状态：“打开串口”可用，“关闭串口”、“发送数据”、“打开文件”、“发送文件”按钮不可用。下拉框可用,以实现串口参数的设置。
     ui->open_port_pushButton->setEnabled(true);
     ui->close_port_pushButton->setEnabled(false);
     ui->send_data_pushButton->setEnabled(false);
+    ui->open_file_pushButton->setEnabled(false);
+    ui->send_file_pushButton->setEnabled(false);
     ui->port_name_comboBox->setEnabled(true);
     ui->baud_rate_comboBox->setEnabled(true);
     ui->data_bit_comboBox->setEnabled(true);
@@ -30,6 +36,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->action_open_port->setEnabled(true);
     ui->action_close_port->setEnabled(false);
     ui->action_send_data->setEnabled(false);
+    ui->action_open_file->setEnabled(false);
+    ui->action_send_file->setEnabled(false);
 }
 
 MainWindow::~MainWindow()
@@ -94,10 +102,12 @@ void MainWindow::on_open_port_pushButton_clicked()
     connect(timer, SIGNAL(timeout), this, SLOT(readPort()));  //信号和槽关联，延迟一段时间后，进行读串口操作
     timer->start(100);  //设置溢出时间为100ms，并开启定时器
 
-    //设置按钮和下拉框的状态：“打开串口”不可用，“关闭串口”和“发送数据”按钮可用。下拉框不可用。
+    //设置按钮和下拉框的状态：“打开串口”不可用，“关闭串口”、“发送数据”、“打开文件”按钮可用。下拉框不可用。“发送文件”按钮视是否打开了文件而定。
     ui->open_port_pushButton->setEnabled(false);
     ui->close_port_pushButton->setEnabled(true);
     ui->send_data_pushButton->setEnabled(true);
+    ui->open_file_pushButton->setEnabled(true);
+    //ui->send_file_pushButton->setEnabled(false);
     ui->port_name_comboBox->setEnabled(false);
     ui->baud_rate_comboBox->setEnabled(false);
     ui->data_bit_comboBox->setEnabled(false);
@@ -106,6 +116,8 @@ void MainWindow::on_open_port_pushButton_clicked()
     ui->action_open_port->setEnabled(false);
     ui->action_close_port->setEnabled(true);
     ui->action_send_data->setEnabled(true);
+    ui->action_open_file->setEnabled(true);
+    //ui->action_send_file->setEnabled(false);
 
     qDebug() << "\nPort has been opened with following settings:" << endl
              << "Port Name: " << portName << endl
@@ -120,10 +132,12 @@ void MainWindow::on_close_port_pushButton_clicked()
 {
     seriaPort->close(); //关闭串口
 
-    //设置按钮和下拉框的状态：“打开串口”可用，“关闭串口”和“发送数据”按钮不可用。下拉框可用。
+    //设置按钮和下拉框的状态：“打开串口”可用，“关闭串口”、“发送数据”、“打开文件”、“发送文件”按钮不可用。下拉框可用。
     ui->open_port_pushButton->setEnabled(true);
     ui->close_port_pushButton->setEnabled(false);
     ui->send_data_pushButton->setEnabled(false);
+    ui->open_file_pushButton->setEnabled(false);
+    ui->send_file_pushButton->setEnabled(false);
     ui->port_name_comboBox->setEnabled(true);
     ui->baud_rate_comboBox->setEnabled(true);
     ui->data_bit_comboBox->setEnabled(true);
@@ -132,6 +146,8 @@ void MainWindow::on_close_port_pushButton_clicked()
     ui->action_open_port->setEnabled(true);
     ui->action_close_port->setEnabled(false);
     ui->action_send_data->setEnabled(false);
+    ui->action_open_file->setEnabled(false);
+    ui->action_send_file->setEnabled(false);
 
     qDebug() << "\nPort has been closed!" << endl;  //用于调试
 }
@@ -181,4 +197,79 @@ void MainWindow::on_action_clear_data_triggered()
 void MainWindow::on_action_quit_triggered()
 {
     ui->quit_pushButton->click();
+}
+void MainWindow::on_action_open_file_triggered()
+{
+    ui->open_file_pushButton->click();
+}
+void MainWindow::on_action_send_file_triggered()
+{
+    ui->send_file_pushButton->click();
+}
+void MainWindow::on_action_save_file_triggered()
+{
+    ui->save_data_pushButton->click();
+}
+
+//定义槽函数：点击“打开文件”按钮，分别在行编辑框中显示文件路径和文件内容
+void MainWindow::on_open_file_pushButton_clicked()
+{
+    QString fileName = QFileDialog::getOpenFileName(this, "打开文件");  //弹出“打开文件”对话框，获取文件名
+    if (!fileName.isEmpty())
+    {
+        QFile file(fileName);
+
+        //以只读方式打开文件。若文件无法读取，返回错误信息对话框
+        if (!file.open(QIODevice::ReadOnly | QFile::Text))
+        {
+            QMessageBox::warning(this, tr("读取文件错误！"), tr("无法读取文件%1:n%2").arg(fileName).arg(file.errorString()));
+            return;
+        }
+
+        //读取文件成功
+        //在行编辑框中显示文件路径
+        QFileInfo infor(file);
+        ui->open_file_lineEdit->setText(infor.absoluteFilePath());
+        //在行编辑框中显示文件内容
+        QTextStream in(&file);
+        ui->file_text_lineEdit->setText(in.readAll());
+        //“发送文件”按钮可用
+        ui->send_file_pushButton->setEnabled(true);
+        ui->action_send_file->setEnabled(true);
+
+        qDebug() << "Open File Success!" << endl << "Path:  " << infor.absoluteFilePath();
+    }
+}
+
+//定义槽函数：点击“发送文件”按钮，将文件内容发送到串口
+void MainWindow::on_send_file_pushButton_clicked()
+{
+    seriaPort->write(ui->file_text_lineEdit->text().toLatin1());
+
+    qDebug() << "\nFile has been sent!"  << endl;   //用于调试
+}
+
+//定义槽函数：点击“保存数据”按钮，将textBrower的内容保存至文件
+void MainWindow::on_save_data_pushButton_clicked()
+{
+    QString fileName = QFileDialog::getSaveFileName(this, "保存文件");  //获取文件名
+    //如果文件名不为空，则保存文件
+    if (!fileName.isEmpty())
+    {
+        QFile file(fileName);
+
+        //以只写方式打开文件。若文件无法读取，则返回错误信息对话框
+        if (!file.open(QIODevice::WriteOnly | QFile::Text))
+        {
+            QMessageBox::warning(this, tr("保存文件错误！"), tr("无法保存文件%1:n%2").arg(fileName).arg(file.errorString()));
+            return;
+        }
+
+        //读取文件成功
+        QTextStream out(&file);
+        out << ui->port_receive_textBrowser->toPlainText();
+
+        QFileInfo infor(file);  //用于测试
+        qDebug() << "Save File Success!" << endl << "Path: " << infor.absolutePath();
+    }
 }

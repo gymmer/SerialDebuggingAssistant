@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>540</width>
-    <height>402</height>
+    <width>544</width>
+    <height>417</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -352,111 +352,59 @@
      </layout>
     </widget>
    </widget>
-   <widget class="QLabel" name="statusBarMes">
-    <property name="geometry">
-     <rect>
-      <x>320</x>
-      <y>360</y>
-      <width>211</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>清华大学·轨道交通控制技术研究中心</string>
-    </property>
-   </widget>
-   <widget class="QWidget" name="layoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>370</y>
-      <width>221</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_9">
-     <item>
-      <widget class="QToolButton" name="open_port_toolButton">
-       <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;打开串口&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-       <property name="text">
-        <string>打开串口</string>
-       </property>
-       <property name="icon">
-        <iconset resource="source.qrc">
-         <normaloff>:/new/toolBar_PNG/image/open_port.png</normaloff>:/new/toolBar_PNG/image/open_port.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QToolButton" name="close_port_toolButton">
-       <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;关闭串口&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-       <property name="text">
-        <string>关闭串口</string>
-       </property>
-       <property name="icon">
-        <iconset resource="source.qrc">
-         <normaloff>:/new/toolBar_PNG/image/close_port.png</normaloff>:/new/toolBar_PNG/image/close_port.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QToolButton" name="send_data_toolButton">
-       <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;发送数据&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-       <property name="text">
-        <string>发送数据</string>
-       </property>
-       <property name="icon">
-        <iconset resource="source.qrc">
-         <normaloff>:/new/toolBar_PNG/image/send_data.png</normaloff>:/new/toolBar_PNG/image/send_data.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QToolButton" name="clear_data_toolButton">
-       <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;清空数据&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-       <property name="text">
-        <string>清空数据</string>
-       </property>
-       <property name="icon">
-        <iconset resource="source.qrc">
-         <normaloff>:/new/toolBar_PNG/image/clear_data.png</normaloff>:/new/toolBar_PNG/image/clear_data.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QToolButton" name="quit_toolButton">
-       <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;退出程序&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-       <property name="text">
-        <string>退出程序</string>
-       </property>
-       <property name="icon">
-        <iconset resource="source.qrc">
-         <normaloff>:/new/toolBar_PNG/image/quit.png</normaloff>:/new/toolBar_PNG/image/quit.png</iconset>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>540</width>
+     <width>544</width>
      <height>23</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu_F">
+    <property name="title">
+     <string>文件(F&amp;)</string>
+    </property>
+    <addaction name="action_new"/>
+    <addaction name="action_open"/>
+    <addaction name="action_close"/>
+    <addaction name="separator"/>
+    <addaction name="action_save"/>
+    <addaction name="action_save_as"/>
+   </widget>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>编辑(&amp;E)</string>
+    </property>
+    <addaction name="action_open_port"/>
+    <addaction name="action_close_port"/>
+    <addaction name="separator"/>
+    <addaction name="action_send_data"/>
+    <addaction name="action_clear_data"/>
+    <addaction name="separator"/>
+    <addaction name="action_quit"/>
+   </widget>
+   <widget class="QMenu" name="menu_S">
+    <property name="title">
+     <string>设置(&amp;S)</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_T">
+    <property name="title">
+     <string>工具(&amp;T)</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_H">
+    <property name="title">
+     <string>帮助(&amp;H)</string>
+    </property>
+   </widget>
+   <addaction name="menu_F"/>
+   <addaction name="menu"/>
+   <addaction name="menu_S"/>
+   <addaction name="menu_T"/>
+   <addaction name="menu_H"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -465,8 +413,121 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="action_new"/>
+   <addaction name="action_open"/>
+   <addaction name="action_save"/>
+   <addaction name="separator"/>
+   <addaction name="action_open_port"/>
+   <addaction name="action_close_port"/>
+   <addaction name="separator"/>
+   <addaction name="action_send_data"/>
+   <addaction name="action_clear_data"/>
+   <addaction name="separator"/>
+   <addaction name="action_quit"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <action name="action_new">
+   <property name="icon">
+    <iconset resource="source.qrc">
+     <normaloff>:/new/toolBar_PNG/image/new_file.png</normaloff>:/new/toolBar_PNG/image/new_file.png</iconset>
+   </property>
+   <property name="text">
+    <string>新建(&amp;N)...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="action_open">
+   <property name="icon">
+    <iconset resource="source.qrc">
+     <normaloff>:/new/toolBar_PNG/image/open_file.png</normaloff>:/new/toolBar_PNG/image/open_file.png</iconset>
+   </property>
+   <property name="text">
+    <string>打开(&amp;O)...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="action_close">
+   <property name="icon">
+    <iconset resource="source.qrc">
+     <normaloff>:/new/toolBar_PNG/image/close_file.png</normaloff>:/new/toolBar_PNG/image/close_file.png</iconset>
+   </property>
+   <property name="text">
+    <string>关闭(&amp;C)...</string>
+   </property>
+  </action>
+  <action name="action_save">
+   <property name="icon">
+    <iconset resource="source.qrc">
+     <normaloff>:/new/toolBar_PNG/image/save_file.png</normaloff>:/new/toolBar_PNG/image/save_file.png</iconset>
+   </property>
+   <property name="text">
+    <string>保存(&amp;S)...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="action_save_as">
+   <property name="icon">
+    <iconset resource="source.qrc">
+     <normaloff>:/new/toolBar_PNG/image/save_as.png</normaloff>:/new/toolBar_PNG/image/save_as.png</iconset>
+   </property>
+   <property name="text">
+    <string>另存为...</string>
+   </property>
+  </action>
+  <action name="action_open_port">
+   <property name="icon">
+    <iconset resource="source.qrc">
+     <normaloff>:/new/toolBar_PNG/image/open_port.png</normaloff>:/new/toolBar_PNG/image/open_port.png</iconset>
+   </property>
+   <property name="text">
+    <string>打开串口</string>
+   </property>
+  </action>
+  <action name="action_close_port">
+   <property name="icon">
+    <iconset resource="source.qrc">
+     <normaloff>:/new/toolBar_PNG/image/close_port.png</normaloff>:/new/toolBar_PNG/image/close_port.png</iconset>
+   </property>
+   <property name="text">
+    <string>关闭串口</string>
+   </property>
+  </action>
+  <action name="action_send_data">
+   <property name="icon">
+    <iconset resource="source.qrc">
+     <normaloff>:/new/toolBar_PNG/image/send_data.png</normaloff>:/new/toolBar_PNG/image/send_data.png</iconset>
+   </property>
+   <property name="text">
+    <string>发送数据</string>
+   </property>
+  </action>
+  <action name="action_clear_data">
+   <property name="icon">
+    <iconset resource="source.qrc">
+     <normaloff>:/new/toolBar_PNG/image/clear_data.png</normaloff>:/new/toolBar_PNG/image/clear_data.png</iconset>
+   </property>
+   <property name="text">
+    <string>清空数据</string>
+   </property>
+  </action>
+  <action name="action_quit">
+   <property name="icon">
+    <iconset resource="source.qrc">
+     <normaloff>:/new/toolBar_PNG/image/quit.png</normaloff>:/new/toolBar_PNG/image/quit.png</iconset>
+   </property>
+   <property name="text">
+    <string>退出程序</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
@@ -486,86 +547,6 @@
     <hint type="destinationlabel">
      <x>221</x>
      <y>289</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>quit_toolButton</sender>
-   <signal>clicked()</signal>
-   <receiver>quit_pushButton</receiver>
-   <slot>click()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>312</x>
-     <y>48</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>155</x>
-     <y>352</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>open_port_toolButton</sender>
-   <signal>clicked()</signal>
-   <receiver>open_port_pushButton</receiver>
-   <slot>click()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>14</x>
-     <y>41</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>37</x>
-     <y>323</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>close_port_toolButton</sender>
-   <signal>clicked()</signal>
-   <receiver>close_port_pushButton</receiver>
-   <slot>click()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>106</x>
-     <y>42</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>154</x>
-     <y>315</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>send_data_toolButton</sender>
-   <signal>clicked()</signal>
-   <receiver>send_data_pushButton</receiver>
-   <slot>click()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>191</x>
-     <y>46</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>471</x>
-     <y>333</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>clear_data_toolButton</sender>
-   <signal>clicked()</signal>
-   <receiver>clear_text_pushButton</receiver>
-   <slot>click()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>250</x>
-     <y>41</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>281</x>
-     <y>250</y>
     </hint>
    </hints>
   </connection>

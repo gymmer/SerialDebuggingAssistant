@@ -23,6 +23,13 @@ private slots:
     void readPort();    //声明槽函数：读取串口数据,在输出窗口显示数据
     void on_clear_text_pushButton_clicked();    //声明槽函数：点击“清空数据按钮”
 
+    //声明槽函数：点击菜单栏/工具栏的各Action
+    void on_action_open_port_triggered();
+    void on_action_close_port_triggered();
+    void on_action_send_data_triggered();
+    void on_action_clear_data_triggered();
+    void on_action_quit_triggered();
+
 private:
     Ui::MainWindow *ui;
     Win_QextSerialPort *seriaPort;   //声明一个串口

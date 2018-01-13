@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QTimer>
 #include <QDebug>
+#include <QLabel>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -12,17 +13,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //设置状态栏
     ui->statusBar->showMessage("欢迎使用串口调试助手！",4000); //临时消息，显示4s
-    ui->statusBarMes->setFrameStyle(QFrame::Box | QFrame::Sunken);
-    ui->statusBar->addPermanentWidget(ui->statusBarMes);
-
-    //设置工具栏
-    ui->mainToolBar->addWidget(ui->open_port_toolButton);
-    ui->mainToolBar->addWidget(ui->close_port_toolButton);
-    ui->mainToolBar->addSeparator();
-    ui->mainToolBar->addWidget(ui->send_data_toolButton);
-    ui->mainToolBar->addWidget(ui->clear_data_toolButton);
-    ui->mainToolBar->addSeparator();
-    ui->mainToolBar->addWidget(ui->quit_toolButton);
+    QLabel *lable = new QLabel(this);   //显示永久消息
+    lable->setText("清华大学·轨道交通控制技术研究中心");
+    lable->setFrameStyle(QFrame::Box | QFrame::Sunken);
+    ui->statusBar->addPermanentWidget(lable);
 
     //设置按钮和下拉框的初始状态：“打开串口”可用，“关闭串口”和“发送数据”按钮不可用。下拉框可用,以实现串口参数的设置。
     ui->open_port_pushButton->setEnabled(true);
@@ -33,9 +27,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->data_bit_comboBox->setEnabled(true);
     ui->parity_bit_comboBox->setEnabled(true);
     ui->stop_bit_comboBox->setEnabled(true);
-    ui->open_port_toolButton->setEnabled(true);
-    ui->close_port_toolButton->setEnabled(false);
-    ui->send_data_toolButton->setEnabled(false);
+    ui->action_open_port->setEnabled(true);
+    ui->action_close_port->setEnabled(false);
+    ui->action_send_data->setEnabled(false);
 }
 
 MainWindow::~MainWindow()
@@ -109,9 +103,9 @@ void MainWindow::on_open_port_pushButton_clicked()
     ui->data_bit_comboBox->setEnabled(false);
     ui->parity_bit_comboBox->setEnabled(false);
     ui->stop_bit_comboBox->setEnabled(false);
-    ui->open_port_toolButton->setEnabled(false);
-    ui->close_port_toolButton->setEnabled(true);
-    ui->send_data_toolButton->setEnabled(true);
+    ui->action_open_port->setEnabled(false);
+    ui->action_close_port->setEnabled(true);
+    ui->action_send_data->setEnabled(true);
 
     qDebug() << "\nPort has been opened with following settings:" << endl
              << "Port Name: " << portName << endl
@@ -135,9 +129,9 @@ void MainWindow::on_close_port_pushButton_clicked()
     ui->data_bit_comboBox->setEnabled(true);
     ui->parity_bit_comboBox->setEnabled(true);
     ui->stop_bit_comboBox->setEnabled(true);
-    ui->open_port_toolButton->setEnabled(true);
-    ui->close_port_toolButton->setEnabled(false);
-    ui->send_data_toolButton->setEnabled(false);
+    ui->action_open_port->setEnabled(true);
+    ui->action_close_port->setEnabled(false);
+    ui->action_send_data->setEnabled(false);
 
     qDebug() << "\nPort has been closed!" << endl;  //用于调试
 }
@@ -165,4 +159,26 @@ void MainWindow::on_clear_text_pushButton_clicked()
     ui->port_receive_textBrowser->insertPlainText("Clear Data function is being developed...");
 
     qDebug() << "\nWindow has been cleared!" << endl;   //用于调试
+}
+
+//定义槽函数：点击菜单栏/工具栏的各Action
+void MainWindow::on_action_open_port_triggered()
+{
+    ui->open_port_pushButton->click();
+}
+void MainWindow::on_action_close_port_triggered()
+{
+    ui->close_port_pushButton->click();
+}
+void MainWindow::on_action_send_data_triggered()
+{
+    ui->send_data_pushButton->click();
+}
+void MainWindow::on_action_clear_data_triggered()
+{
+    ui->clear_text_pushButton->click();
+}
+void MainWindow::on_action_quit_triggered()
+{
+    ui->quit_pushButton->click();
 }

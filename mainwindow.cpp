@@ -15,12 +15,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    setWindowTitle("串口调试助手");
+    setWindowTitle(tr("串口调试助手"));
 
     //设置状态栏
-    ui->statusBar->showMessage("欢迎使用串口调试助手！",4000); //临时消息，显示4s
+    ui->statusBar->showMessage(tr("欢迎使用串口调试助手！"),4000); //临时消息，显示4s
     QLabel *lable = new QLabel(this);   //显示永久消息
-    lable->setText("清华大学·轨道交通控制技术研究中心");
+    lable->setText(tr("清华大学·轨道交通控制技术研究中心"));
     lable->setFrameStyle(QFrame::Box | QFrame::Sunken);
     ui->statusBar->addPermanentWidget(lable);
 
@@ -71,7 +71,7 @@ void MainWindow::on_open_port_pushButton_clicked()
 {
     //定义并打开串口
     QString portName = ui->port_name_comboBox->currentText();   //获取串口名
-    seriaPort = new Win_QextSerialPort(portName, QextSerialBase::Polling);  //定义串口，采取查询方式Polling
+    seriaPort = new Posix_QextSerialPort(portName, QextSerialBase::Polling);  //定义串口，采取查询方式Polling
     seriaPort->open(QIODevice::ReadWrite);  //以读写的方式打开串口
 
     //设置串口参数。参数由下拉框的选项得到

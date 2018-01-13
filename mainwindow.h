@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "win_qextserialport.h"
+#include "posix_qextserialport.h"
 
 namespace Ui {
 class MainWindow;
@@ -42,7 +42,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    Win_QextSerialPort *seriaPort;   //声明一个串口
+    Posix_QextSerialPort *seriaPort;   //声明一个串口
 };
 
 #endif // MAINWINDOW_H

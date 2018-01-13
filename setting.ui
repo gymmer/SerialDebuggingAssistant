@@ -25,13 +25,13 @@
    <property name="title">
     <string>设置</string>
    </property>
-   <widget class="QWidget" name="layoutWidget">
+   <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
       <x>20</x>
       <y>20</y>
       <width>191</width>
-      <height>136</height>
+      <height>131</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -54,36 +54,6 @@
          <item>
           <property name="text">
            <string>COM2</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>COM3</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>COM4</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>COM5</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>COM6</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>COM7</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>COM8</string>
           </property>
          </item>
         </widget>
@@ -248,7 +218,7 @@
     </layout>
    </widget>
   </widget>
-  <widget class="QWidget" name="layoutWidget">
+  <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
      <x>40</x>

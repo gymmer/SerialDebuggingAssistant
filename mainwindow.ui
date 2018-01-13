@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>544</width>
-    <height>492</height>
+    <height>526</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -61,36 +61,6 @@
           <item>
            <property name="text">
             <string>COM2</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>COM3</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>COM4</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>COM5</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>COM6</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>COM7</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>COM8</string>
            </property>
           </item>
          </widget>
@@ -345,7 +315,7 @@
       <x>20</x>
       <y>240</y>
       <width>191</width>
-      <height>81</height>
+      <height>91</height>
      </rect>
     </property>
     <property name="title">
@@ -356,8 +326,8 @@
       <rect>
        <x>10</x>
        <y>20</y>
-       <width>168</width>
-       <height>56</height>
+       <width>180</width>
+       <height>66</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -393,9 +363,9 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>330</y>
+      <y>340</y>
       <width>501</width>
-      <height>81</height>
+      <height>101</height>
      </rect>
     </property>
     <property name="title">
@@ -407,7 +377,7 @@
        <x>10</x>
        <y>20</y>
        <width>481</width>
-       <height>58</height>
+       <height>68</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -457,7 +427,7 @@
      <x>0</x>
      <y>0</y>
      <width>544</width>
-     <height>23</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_F">

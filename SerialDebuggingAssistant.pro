@@ -15,13 +15,16 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     qextserialbase.cpp \
-    win_qextserialport.cpp
+    win_qextserialport.cpp \
+    setting.cpp
 
 HEADERS  += mainwindow.h \
     qextserialbase.h \
-    win_qextserialport.h
+    win_qextserialport.h \
+    setting.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    setting.ui
 
 RESOURCES += \
     source.qrc

@@ -63,6 +63,36 @@
             <string>COM2</string>
            </property>
           </item>
+          <item>
+           <property name="text">
+            <string>COM3</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>COM4</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>COM5</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>COM6</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>COM7</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>COM8</string>
+           </property>
+          </item>
          </widget>
         </item>
        </layout>
@@ -371,7 +401,7 @@
     <property name="title">
      <string>文件设置</string>
     </property>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -454,6 +484,8 @@
     <property name="title">
      <string>设置(&amp;S)</string>
     </property>
+    <addaction name="action_default_setting"/>
+    <addaction name="action_reset_setting"/>
    </widget>
    <widget class="QMenu" name="menu_T">
     <property name="title">
@@ -487,6 +519,9 @@
    <addaction name="separator"/>
    <addaction name="action_send_data"/>
    <addaction name="action_clear_data"/>
+   <addaction name="separator"/>
+   <addaction name="action_default_setting"/>
+   <addaction name="action_reset_setting"/>
    <addaction name="separator"/>
    <addaction name="action_quit"/>
   </widget>
@@ -582,6 +617,24 @@
    </property>
    <property name="toolTip">
     <string>发送文件</string>
+   </property>
+  </action>
+  <action name="action_default_setting">
+   <property name="icon">
+    <iconset resource="source.qrc">
+     <normaloff>:/new/toolBar_PNG/image/default_setting.png</normaloff>:/new/toolBar_PNG/image/default_setting.png</iconset>
+   </property>
+   <property name="text">
+    <string>默认设置</string>
+   </property>
+  </action>
+  <action name="action_reset_setting">
+   <property name="icon">
+    <iconset resource="source.qrc">
+     <normaloff>:/new/toolBar_PNG/image/reset_setting.png</normaloff>:/new/toolBar_PNG/image/reset_setting.png</iconset>
+   </property>
+   <property name="text">
+    <string>恢复默认</string>
    </property>
   </action>
  </widget>

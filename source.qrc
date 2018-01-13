@@ -10,5 +10,7 @@
         <file>image/quit.png</file>
         <file>image/save_as.png</file>
         <file>image/save_file.png</file>
+        <file>image/default_setting.png</file>
+        <file>image/reset_setting.png</file>
     </qresource>
 </RCC>

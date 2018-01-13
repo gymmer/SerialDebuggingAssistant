@@ -1,5 +1,7 @@
 #include "mainwindow.h"
+#include "setting.h"
 #include "ui_mainwindow.h"
+#include "ui_setting.h"
 #include <QTimer>
 #include <QDebug>
 #include <QLabel>
@@ -38,6 +40,25 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->action_send_data->setEnabled(false);
     ui->action_open_file->setEnabled(false);
     ui->action_send_file->setEnabled(false);
+    ui->action_reset_setting->setEnabled(true);
+
+    //以只读方式读取配置文件，初始化界面各项comboBox
+    QFile file("Setting.txt");
+    if (!file.open(QIODevice::ReadOnly | QFile::Text))  //无法读取配置文件，提醒用户进行设置
+    {
+        qDebug() << "\n" << file.errorString() << endl; //用于调试
+    }
+    else    //读取配置文件成功
+    {
+        QTextStream in(&file);
+        ui->port_name_comboBox->setCurrentIndex(in.readLine().toInt());
+        ui->baud_rate_comboBox->setCurrentIndex(in.readLine().toInt());
+        ui->data_bit_comboBox->setCurrentIndex(in.readLine().toInt());
+        ui->parity_bit_comboBox->setCurrentIndex(in.readLine().toInt());
+        ui->stop_bit_comboBox->setCurrentIndex(in.readLine().toInt());
+
+        qDebug() << "\nRead Setting File Success!" << endl; //用于调试
+    }
 }
 
 MainWindow::~MainWindow()
@@ -118,6 +139,7 @@ void MainWindow::on_open_port_pushButton_clicked()
     ui->action_send_data->setEnabled(true);
     ui->action_open_file->setEnabled(true);
     //ui->action_send_file->setEnabled(false);
+    ui->action_reset_setting->setEnabled(false);
 
     qDebug() << "\nPort has been opened with following settings:" << endl
              << "Port Name: " << portName << endl
@@ -148,6 +170,7 @@ void MainWindow::on_close_port_pushButton_clicked()
     ui->action_send_data->setEnabled(false);
     ui->action_open_file->setEnabled(false);
     ui->action_send_file->setEnabled(false);
+    ui->action_reset_setting->setEnabled(true);
 
     qDebug() << "\nPort has been closed!" << endl;  //用于调试
 }
@@ -172,7 +195,8 @@ void MainWindow::readPort()
 //定义槽函数：点击“清空数据”按钮
 void MainWindow::on_clear_text_pushButton_clicked()
 {
-    ui->port_receive_textBrowser->insertPlainText("Clear Data function is being developed...");
+    ui->port_receive_textBrowser->clear();
+    ui->port_receive_textBrowser->insertPlainText("Clear Success!\n");
 
     qDebug() << "\nWindow has been cleared!" << endl;   //用于调试
 }
@@ -237,7 +261,7 @@ void MainWindow::on_open_file_pushButton_clicked()
         ui->send_file_pushButton->setEnabled(true);
         ui->action_send_file->setEnabled(true);
 
-        qDebug() << "Open File Success!" << endl << "Path:  " << infor.absoluteFilePath();
+        qDebug() << "\nOpen File Success!" << endl << "Path:  " << infor.absoluteFilePath();
     }
 }
 
@@ -270,6 +294,37 @@ void MainWindow::on_save_data_pushButton_clicked()
         out << ui->port_receive_textBrowser->toPlainText();
 
         QFileInfo infor(file);  //用于测试
-        qDebug() << "Save File Success!" << endl << "Path: " << infor.absolutePath();
+        qDebug() << "\nSave File Success!" << endl << "Path: " << infor.absolutePath();
+    }
+}
+
+//定义槽函数：点击“默认设置”action,弹出“用户设置”对话框
+void MainWindow::on_action_default_setting_triggered()
+{
+    setting *setwindow = new setting(this);
+    setwindow->show();
+}
+
+//定义槽函数：点击“恢复默认”action
+void MainWindow::on_action_reset_setting_triggered()
+{
+    QFile file("Setting.txt");
+
+    //以只读方式打开配置文件
+    if (!file.open(QIODevice::ReadOnly | QFile::Text))  //无法读取配置文件，提醒用户进行设置
+    {
+        qDebug() << "\n" << file.errorString() << endl; //用于调试
+        return;
+    }
+    else    //成功读取配置文件，更改界面各项comboBox
+    {
+        QTextStream in(&file);
+        ui->port_name_comboBox->setCurrentIndex(in.readLine().toInt());
+        ui->baud_rate_comboBox->setCurrentIndex(in.readLine().toInt());
+        ui->data_bit_comboBox->setCurrentIndex(in.readLine().toInt());
+        ui->parity_bit_comboBox->setCurrentIndex(in.readLine().toInt());
+        ui->stop_bit_comboBox->setCurrentIndex(in.readLine().toInt());
+
+        qDebug() << "\nSetting has been reset!" << endl; //用于调试
     }
 }

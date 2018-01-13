@@ -36,6 +36,10 @@ private slots:
     void on_action_send_file_triggered();
     void on_action_save_file_triggered();
 
+    void on_action_default_setting_triggered();
+
+    void on_action_reset_setting_triggered();
+
 private:
     Ui::MainWindow *ui;
     Win_QextSerialPort *seriaPort;   //声明一个串口

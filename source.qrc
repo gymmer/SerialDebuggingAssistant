@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/new/toolBar_PNG">
+        <file>image/clear_data.png</file>
+        <file>image/close_port.png</file>
+        <file>image/open_port.png</file>
+        <file>image/quit.png</file>
+        <file>image/send_data.png</file>
+    </qresource>
+</RCC>
